@@ -49,7 +49,7 @@ Shared device tree for TWRP, OrangeFox, and future AOSP ROM builds.
 
 ```bash
 mkdir TWRP && cd TWRP
-repo init -u https://github.com/TWRP-Test/platform_manifest_twrp_aosp -b twrp-14.1 --depth=1
+repo init -u https://github.com/TWRP-Test/platform_manifest_twrp_aosp -b twrp-16.0 --depth=1
 repo sync -j$(nproc) --no-tags --no-clone-bundle
 ```
 
