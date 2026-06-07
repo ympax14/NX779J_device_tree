@@ -10,7 +10,7 @@
 | **Encryption** | Hardware-wrapped key FBE + metadata encryption |
 | **Maintainer** | [Ympax](https://github.com/ympax14) |
 
-Shared device tree for TWRP, OrangeFox, and future AOSP ROM builds.
+Shared device tree for TWRP, OrangeFox, PitchBlack, and future AOSP ROM builds.
 
 ---
 
@@ -35,6 +35,9 @@ Shared device tree for TWRP, OrangeFox, and future AOSP ROM builds.
 | Repo | Description |
 |---|---|
 | [NX779J_device_tree](https://github.com/ympax14/NX779J_device_tree) | This repo — shared device tree |
+| [NX779J_TWRP](https://github.com/ympax14/NX779J_TWRP) | TWRP `bootable/recovery` fork (TWRP-Test twrp-16.0 base + NX779J patches) |
+| [NX779J_OrangeFox](https://github.com/ympax14/NX779J_OrangeFox) | OrangeFox `bootable/recovery` fork (fox_14.1 base + NX779J patches) |
+| [NX779J_PitchBlack](https://github.com/ympax14/NX779J_PitchBlack) | PitchBlack `bootable/recovery` fork (android-14.0 base + NX779J patches) |
 
 ---
 
@@ -57,17 +60,48 @@ repo sync -j$(nproc) --no-tags --no-clone-bundle
 git clone https://github.com/ympax14/NX779J_device_tree device/nubia/NX779J
 ```
 
+### Build TWRP
+
+```bash
+export ALLOW_MISSING_DEPENDENCIES=true
+source build/envsetup.sh
+lunch twrp_NX779J-bp2a-eng
+mka recoveryimage
+```
+
+### Build OrangeFox
+
+```bash
+# Replace bootable/recovery with OrangeFox fork
+git clone https://gitlab.com/OrangeFox/bootable/recovery -b fox_14.1 bootable/recovery
+# Add OrangeFox vendor overlay (Android 16 support)
+git clone https://gitlab.com/OrangeFox/vendor/recovery -b fox_16.0 vendor/recovery
+
+export FOX_BUILD_DEVICE=NX779J FOX_AB_DEVICE=1 FOX_BUILD_TYPE=Unofficial
+export ALLOW_MISSING_DEPENDENCIES=true
+source build/envsetup.sh
+lunch twrp_NX779J-bp2a-eng
+mka recoveryimage
+```
+
+### Build PitchBlack
+
+```bash
+# Replace bootable/recovery with PBRP fork
+git clone https://github.com/PitchBlackRecoveryProject/android_bootable_recovery -b android-14.0 bootable/recovery
+
+export PB_DEVICE_NAME=NX779J PB_BUILD_TYPE=Unofficial
+export ALLOW_MISSING_DEPENDENCIES=true
+source build/envsetup.sh
+lunch twrp_NX779J-bp2a-eng
+mka recoveryimage
+```
+
 ---
 
 ## Flashing
 
 > **Important:** NX779J uses A/B slots — flash to **both** slots.
-
-### Using the flash script
-
-```bash
-bash bootable/recovery/scripts/flash.sh
-```
 
 ### Manual
 
