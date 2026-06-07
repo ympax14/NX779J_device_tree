@@ -116,7 +116,7 @@ fastboot reboot recovery
 
 ## Technical notes
 
-- Adapted from the NX789J Pro (RedMagic 9 Pro) device tree
+- Adapted from the NX789J Pro (RedMagic 10 Pro) device tree
 - DRM display requires `drmSetMaster()` before each atomic commit (SM8650 driver rejects commits without DRM master)
 - `servicemanager` needs `libperfetto_c.so` to start in recovery — bundled in the ramdisk
 - `ssgtzd` (Qualcomm SSG TZ Daemon) needs `Utils_getTrace` — provided by `libminkdescriptor_shim.so`
