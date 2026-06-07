@@ -35,8 +35,6 @@ Shared device tree for TWRP, OrangeFox, and future AOSP ROM builds.
 | Repo | Description |
 |---|---|
 | [NX779J_device_tree](https://github.com/ympax14/NX779J_device_tree) | This repo — shared device tree |
-| [NX779J_TWRP](https://github.com/ympax14/NX779J_TWRP) | TWRP `bootable/recovery` fork (TWRP-Test base + NX779J patches) |
-| [NX779J_OrangeFox](https://github.com/ympax14/NX779J_OrangeFox) | OrangeFox `bootable/recovery` fork (fox_14.1 base + NX779J patches) + build scripts in `scripts/` |
 
 ---
 
@@ -58,51 +56,6 @@ repo sync -j$(nproc) --no-tags --no-clone-bundle
 ```bash
 git clone https://github.com/ympax14/NX779J_device_tree device/nubia/NX779J
 ```
-
----
-
-## Building TWRP
-
-```bash
-# Switch bootable/recovery to the NX779J TWRP branch
-cd bootable/recovery
-git remote add nx779j https://github.com/ympax14/NX779J_TWRP
-git fetch nx779j
-git checkout nx779j/main -b nx779j-twrp-fixes
-cd ../..
-
-# Build
-source build/envsetup.sh
-export ALLOW_MISSING_DEPENDENCIES=true
-lunch twrp_NX779J-bp2a-eng
-mka recoveryimage -j$(nproc)
-```
-
-Output: `out/target/product/NX779J/recovery.img`
-
----
-
-## Building OrangeFox
-
-OrangeFox uses the fox_14.1 UI with fox_16.0 vendor tools.
-
-```bash
-# Clone OrangeFox vendor (fox_16.0)
-git clone https://gitlab.com/OrangeFox/vendor/recovery.git -b fox_16.0 vendor/recovery
-
-# Switch bootable/recovery to the NX779J OrangeFox branch
-cd bootable/recovery
-git remote add nx779j-of https://github.com/ympax14/NX779J_OrangeFox
-git fetch nx779j-of
-git checkout nx779j-of/main -b nx779j-orangefox-fixes
-cd ../..
-
-# Run setup and build using the included scripts
-bash bootable/recovery/scripts/setup_device.sh
-bash bootable/recovery/scripts/build.sh
-```
-
-Output: `out/target/product/NX779J/recovery.img`
 
 ---
 
@@ -141,4 +94,4 @@ fastboot reboot recovery
 
 - [OrangeFox Recovery Project](https://orangefox.tech)
 - [TWRP Team](https://github.com/TeamWin)
-- Adapted from NX789J Pro device tree
+- [Reminon, Adapted from NX789J Pro device tree](https://github.com/reminon/twrp_device_nubia_nx789j)
