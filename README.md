@@ -35,9 +35,6 @@ Shared device tree for TWRP, OrangeFox, PitchBlack, and future AOSP ROM builds.
 | Repo | Description |
 |---|---|
 | [NX779J_device_tree](https://github.com/ympax14/NX779J_device_tree) | This repo — shared device tree |
-| [NX779J_TWRP](https://github.com/ympax14/NX779J_TWRP) | TWRP `bootable/recovery` fork (TWRP-Test twrp-16.0 base + NX779J patches) |
-| [NX779J_OrangeFox](https://github.com/ympax14/NX779J_OrangeFox) | OrangeFox `bootable/recovery` fork (fox_14.1 base + NX779J patches) |
-| [NX779J_PitchBlack](https://github.com/ympax14/NX779J_PitchBlack) | PitchBlack `bootable/recovery` fork (android-14.0 base + NX779J patches) |
 
 ---
 
